@@ -2,9 +2,60 @@ import { useState } from "react"
 
 const Home = () => {
 
+    const [blogs, setBlogs] = useState([
+
+        {
+            title: 'Blockchain Technology',
+            body: 'Blockchain is the future of technology',
+            author: 'Dominic Williams',
+            id: 1
+        },
+
+        {
+            title: 'Internet Computer',
+            body: 'Applications that run on Blochain Technology',
+            author: 'Elon Musk',
+            id: 2
+        },
+
+        {
+            title: 'Bitcoin and Cryptocurrencies',
+            body: 'Payments systems implemented on Blockchain',
+            author: 'Matthews',
+            id: 3
+        },
+
+        {
+            title: 'Quantum Computers',
+            body: 'Blockchain is the future of technology',
+            author: 'Dominic Williams',
+            id: 1
+        },
+
+        {
+            title: 'Blockchain Technology',
+            body: 'Blockchain is the future of technology',
+            author: 'Dominic Williams',
+            id: 1
+        }
+
+    ]);
+
+    // JSONArray -> Array of Object
+    // [{}, {}, {}]
+
+    // JSONObject -> Single
+    // {}
+
     return (
         <div className="home">
-            
+            {blogs.map((blog) => (
+                <div className="blog-preview">
+                    <h2>{blog.title}</h2>
+                    <p>Written by  {blog.author}</p>
+
+                </div>
+            ))}
         </div>
     );
 }
