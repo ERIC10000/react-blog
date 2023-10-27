@@ -1,4 +1,5 @@
 import { useState } from "react"
+import BlogList from "./BlogList";
 
 const Home = () => {
 
@@ -8,6 +9,7 @@ const Home = () => {
             title: 'Blockchain Technology',
             body: 'Blockchain is the future of technology',
             author: 'Dominic Williams',
+            image_url: "https://builtin.com/sites/www.builtin.com/files/styles/og/public/2022-09/blockchain.png",
             id: 1
         },
 
@@ -15,6 +17,7 @@ const Home = () => {
             title: 'Internet Computer',
             body: 'Applications that run on Blochain Technology',
             author: 'Elon Musk',
+            image_url: "https://builtin.com/sites/www.builtin.com/files/styles/og/public/2022-09/blockchain.png",
             id: 2
         },
 
@@ -22,6 +25,7 @@ const Home = () => {
             title: 'Bitcoin and Cryptocurrencies',
             body: 'Payments systems implemented on Blockchain',
             author: 'Matthews',
+            image_url: "https://builtin.com/sites/www.builtin.com/files/styles/og/public/2022-09/blockchain.png",
             id: 3
         },
 
@@ -29,17 +33,34 @@ const Home = () => {
             title: 'Quantum Computers',
             body: 'Blockchain is the future of technology',
             author: 'Dominic Williams',
-            id: 1
+            image_url: "https://builtin.com/sites/www.builtin.com/files/styles/og/public/2022-09/blockchain.png",
+            id: 4
         },
 
         {
-            title: 'Blockchain Technology',
-            body: 'Blockchain is the future of technology',
+            title: ' Decentralized Application ',
+            body: 'Applications Deployed on Blockchain',
             author: 'Dominic Williams',
-            id: 1
+            image_url: "https://builtin.com/sites/www.builtin.com/files/styles/og/public/2022-09/blockchain.png",
+            id: 5
+        },
+
+        {
+            title: 'Metaverse ',
+            body: ' One of DeFi that are currently on Internet Computer',
+            author: 'Dominic Williams',
+            image_url: "https://builtin.com/sites/www.builtin.com/files/styles/og/public/2022-09/blockchain.png",
+            id: 6
         }
 
     ]);
+
+    // Delete function placed here: Home component where data was created
+
+    const handleDelete = (id) => {
+        const remainingBlogs = blogs.filter((blog) => blog.id !== id)
+        setBlogs(remainingBlogs)
+    }
 
     // JSONArray -> Array of Object
     // [{}, {}, {}]
@@ -49,18 +70,16 @@ const Home = () => {
 
     return (
         <div className="home">
-            {blogs.map((blog) => (
-                <div className="blog-preview">
-                    <h2>{blog.title}</h2>
-                    <p>Written by  {blog.author}</p>
+            <BlogList blogs={blogs} title="All Blogs!" handleDelete={handleDelete} />
 
-                </div>
-            ))}
+            {/* <BlogList blogs={blogs.filter((blog) => blog.author === "Dominic Williams")} title="Dominic Williams Blogs!" /> */}
         </div>
     );
 }
 
 export default Home;
+
+
 
 // Create a button, when the button is click, call the function 
 // handleAddNumber = (parameters) =>{}
@@ -113,3 +132,6 @@ export default Home;
     //         <button onClick={handleClick}>Click Me!</button><br />
     //         <button onClick={handleUpadeteAge}>Age + 1</button>
     //         <button onClick={handleUpdateCounty}>Update County</button>
+
+    // Filter Method in Array: Used to return results based on a condition
+    // Functions as Props: Delete a Blog
