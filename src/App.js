@@ -1,16 +1,20 @@
 
 import Navbar from './Navbar';
 import Home from './Home';
+import Nurses from './Nurses';
+import Conference from './Conference';
 
 function App() {
 
-  
+
 
   return (
     <div className="App">
       <Navbar />
       <div className="content">
-        <Home />
+        {/* <Home /> */}
+        {/* <Nurses /> */}
+        <Conference />
       </div>
 
     </div>

@@ -1,59 +1,10 @@
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import BlogList from "./BlogList";
 
 const Home = () => {
 
-    const [blogs, setBlogs] = useState([
+    const [blogs, setBlogs] = useState(null);
 
-        {
-            title: 'Blockchain Technology',
-            body: 'Blockchain is the future of technology',
-            author: 'Dominic Williams',
-            image_url: "https://builtin.com/sites/www.builtin.com/files/styles/og/public/2022-09/blockchain.png",
-            id: 1
-        },
-
-        {
-            title: 'Internet Computer',
-            body: 'Applications that run on Blochain Technology',
-            author: 'Elon Musk',
-            image_url: "https://builtin.com/sites/www.builtin.com/files/styles/og/public/2022-09/blockchain.png",
-            id: 2
-        },
-
-        {
-            title: 'Bitcoin and Cryptocurrencies',
-            body: 'Payments systems implemented on Blockchain',
-            author: 'Matthews',
-            image_url: "https://builtin.com/sites/www.builtin.com/files/styles/og/public/2022-09/blockchain.png",
-            id: 3
-        },
-
-        {
-            title: 'Quantum Computers',
-            body: 'Blockchain is the future of technology',
-            author: 'Dominic Williams',
-            image_url: "https://builtin.com/sites/www.builtin.com/files/styles/og/public/2022-09/blockchain.png",
-            id: 4
-        },
-
-        {
-            title: ' Decentralized Application ',
-            body: 'Applications Deployed on Blockchain',
-            author: 'Dominic Williams',
-            image_url: "https://builtin.com/sites/www.builtin.com/files/styles/og/public/2022-09/blockchain.png",
-            id: 5
-        },
-
-        {
-            title: 'Metaverse ',
-            body: ' One of DeFi that are currently on Internet Computer',
-            author: 'Dominic Williams',
-            image_url: "https://builtin.com/sites/www.builtin.com/files/styles/og/public/2022-09/blockchain.png",
-            id: 6
-        }
-
-    ]);
 
     // Delete function placed here: Home component where data was created
 
@@ -61,6 +12,22 @@ const Home = () => {
         const remainingBlogs = blogs.filter((blog) => blog.id !== id)
         setBlogs(remainingBlogs)
     }
+
+
+
+    // useEffect: Execute after every DOM Render
+    useEffect(() => {
+        fetch('http://wangechi.pythonanywhere.com/api/view_nurses')
+            .then(res => {
+                return res.json();
+            })
+            .then(data => {
+                console.log(data)
+            })
+    }, []);
+
+
+    // If its empty, then useEffect will only execute once
 
     // JSONArray -> Array of Object
     // [{}, {}, {}]
@@ -73,6 +40,7 @@ const Home = () => {
             <BlogList blogs={blogs} title="All Blogs!" handleDelete={handleDelete} />
 
             {/* <BlogList blogs={blogs.filter((blog) => blog.author === "Dominic Williams")} title="Dominic Williams Blogs!" /> */}
+
         </div>
     );
 }
@@ -135,3 +103,9 @@ export default Home;
 
     // Filter Method in Array: Used to return results based on a condition
     // Functions as Props: Delete a Blog
+
+
+    // useEffect Hook in React: A function that will always run/execute after every DOM render:
+    // DOM render: Operation that will create and update the UI
+
+    // useEffect Dependencies: Array that is called after use Effect render, Deternine which operation can triggeer useEffect
